@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@elastic/elasticsearch": "^8.6.0",
+    "body-parser": "^1.20.2",
+    "config": "^3.3.9",
+    "cors": "^2.8.5",
+    "elasticsearch": "^16.7.3",
+    "luxon": "^3.4.2",
+    "node-cron": "^3.0.2",
+    "node-schedule": "^2.1.1",
+    "openai": "^3.2.0",
+    "socket.io": "^4.5.4"
+  }
+}

@@ -1,0 +1,373 @@
+/* Basic styling */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #272626;
+  color:burlywood;
+  
+}
+
+
+.header{
+color:antiquewhite;
+height:222px;
+width:100%;
+background-size: cover;
+
+  background-image:url("https://preikestolenbasecamp.com/wp-content/uploads/2021/05/Sauna_boat_Preikestolen_Basecamp.jpeg");
+}
+
+.header h1{
+
+  padding:5%;
+  padding-left:px;
+}
+
+
+#date-table{
+
+}
+
+
+
+
+/* Style for month buttons container */
+#month-buttons-container {
+  display: flex;
+  margin-left:5%;
+  margin-top:3%;
+
+}
+
+/* Style for individual month button */
+.month-button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  cursor: pointer;
+  transition:0.55s
+}
+
+.month-button:Hover {
+  padding: 10px 20px;
+  background-color: #bd571d;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Style for selected month button */
+.month-button.selected {
+  background-color: #962a1e;
+}
+
+
+/* Style for date and time selection tables */
+#availability-table {
+
+
+
+}
+
+.booking-form{
+position: absolute;
+top:30%;
+width:21%;
+height:auto;
+left:72%;
+   border-style: solid;
+   border-right:0px;
+   border-top:0px;
+   border-bottom:0px;
+   
+}
+
+/* Style for date and time selection tables */
+.date-time-table {
+
+  margin-left:5%;
+width:33%;
+  border-collapse: collapse;
+  margin-top: 33px;
+  
+}
+
+
+
+/* Style for individual selectable date */
+.selectable-date,
+.selectable-time {
+ 
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  transition:0.55s;
+}
+
+/* Style for selected date */
+.selectable-date:hover,
+.selectable-time:hover {
+  background-color: #34d5db;
+  color: #fff;
+}
+
+/* Style for selected date */
+.selectable-date.selected,
+.selectable-time.selected {
+  background-color: #3498db;
+  color: #fff;
+}
+
+/* Style for selected date */
+.selectable-date.selected:hover,
+.selectable-time.selected:hover {
+  background-color: #7434db;
+  color: #fff;
+}
+
+
+#date-table{
+
+  }
+  
+
+
+#date-table td{
+padding:5px;
+
+}
+
+/* Style for book button */
+#book-button {
+  position:relative;
+left:55px;
+  
+  width:333px;
+  padding: 33px;
+  background-color: #d1c5b2;
+  color: #272626;
+  cursor: pointer;
+  border: none;
+  border-radius:9px;
+  font-size:18px;
+}
+
+/* Style for message box */
+#message-box {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+
+
+
+/* Add this to your CSS */
+.selectable-time.unavailable {
+  background-color: #f2f2f2; /* Set your desired background color here */
+}
+
+
+
+
+.bookings-list {
+  list-style: none;
+  padding: 0;
+}
+
+.bookings-list li {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #141414;
+  color:burlywood;
+}
+
+
+#booked_items_list{
+display:none;
+min-height:111px;
+background: #333;
+
+}
+
+
+.highlight {
+  background-color:blueviolet;
+}
+
+.bookTitle {
+  padding-top:2%;
+  padding-bottom:3%;
+padding-left:5%;
+}
+
+
+
+#bokadeTider{
+  list-style: none;
+  min-height:111px;
+  max-height:23vh;
+  overflow-y:scroll;
+  width:100%;
+line-height:155%;
+  padding:14%;
+  padding-top:5%;
+  margin-bottom:5px;
+  }
+
+  
+#bokadeTider::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+#bokadeTider::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the thumb */
+  border-radius: 5px; /* Rounded corners of the thumb */
+}
+
+#bokadeTider::-webkit-scrollbar-track {
+  background-color: #f0f0f0; /* Color of the track */
+}
+
+  #bokadeTider li{
+    list-style: none;
+ margin-bottom:5px;
+ border-style: solid;
+ border-right:0px;
+ border-top:0px;
+ border-left:0px;
+padding:5%;
+
+    }
+  
+    #bokadeTider li:first-child {
+      list-style: none;
+      margin-bottom:5px;
+      border-style: solid;
+      border-right:0px;
+      border-top:0px;
+      border-left:0px;
+     padding:5%;
+     padding-top:0%;
+     
+    }
+
+
+
+    .bokadeTiderTitle{
+
+      padding-left:14%;
+    }
+
+    .BookingTimesTitle{
+      padding-top:33px;
+margin-left:14%;
+padding-left:5%;
+      height:11vh;
+      width:90%;
+    
+      margin-bottom:5%;
+      background:#424242;
+    }
+
+
+    .BookingTimes{
+    
+padding-left:5%;
+  
+      width:90%;
+    
+    
+  
+    }
+
+
+    .bokningsContainerBig{
+
+margin-left:3.3%;
+      display:flex;
+      flex-direction: column;
+      width:33%;
+    }
+
+    .container{
+
+
+    }
+
+
+
+
+    /* Basic styling */
+/* ... (Your existing styles) ... */
+
+/* Media queries for responsiveness */
+@media only screen and (max-width: 1300px) {
+  /* Adjust styles for smaller screens */
+  .bokningsContainerBig {
+    width: 100%;
+  }
+  .booking-form {
+    position: relative;
+    top: 0;
+    width: 100%;
+    left: 0;
+    border-style: none;
+    padding: 0%;
+   
+  }
+  .BookingTimes {
+    padding-top: 20px;
+    padding-left: 5%;
+    height: auto;
+    margin-left: 0%;
+   
+  
+    
+  }
+  /* Add more responsive adjustments as needed */
+
+
+  #bokadeTider{
+    list-style: none;
+    min-height:111px;
+    max-height:23vh;
+    overflow-y:scroll;
+    width:100%;
+  line-height:155%;
+    padding:0%;
+    margin-bottom:5px;
+    }
+  
+
+    .bokadeTiderTitle{
+
+      padding-top:42px;
+      padding-bottom:33px;
+      padding-left:5%;
+    }
+
+    .BookingTimesTitle{
+      padding-top:33px;
+padding-left:5%;
+      height:14vh;
+      width:100%;
+      margin-left:0%;
+      margin-bottom:5%;
+      background:#424242;
+    }
+
+
+    .BookingTimes{
+    
+
+  
+padding-left:5%;
+padding-bottom:5%;
+      width:100%;
+    
+    
+    
+    }
+
+}
