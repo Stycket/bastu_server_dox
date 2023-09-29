@@ -4,7 +4,7 @@ import cors from 'cors';
 import { MongoClient } from 'mongodb';
 import { DateTime } from 'luxon'; // Import Luxon's DateTime
 
-import cron from 'node-cron'; // Import node-cron
+
 
 dotenv.config();
 
@@ -100,10 +100,6 @@ async function removeItemsThreeMonth() {
 
 
 
-// Schedule the task to run at the start of each new month (1st day at midnight)
-cron.schedule('0 0 1 * *', () => {
-  removeItemsThreeMonth();
-});
 
 // Function to check and remove outdated items when the server starts
 async function removeOutdatedItemsOnServerStart() {
