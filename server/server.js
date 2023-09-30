@@ -12,7 +12,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const uri = 'mongodb+srv://nurium:q2SvFGyNeYdSgP4X@saunacluster.wjfc1vm.mongodb.net/'; // Replace with your MongoDB Atlas connection string
+
+
+const uri = process.env.MONGODB_URL; // Replace with your MongoDB Atlas connection string
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -97,6 +99,7 @@ async function removeItemsThreeMonth() {
     console.error('An error occurred while removing items:', error);
   }
 }
+
 
 
 
