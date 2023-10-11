@@ -34,7 +34,9 @@ async function startServer() {
       const selectedDate = req.body.date;
       const selectedTimeSlot = req.body.timeSlots;
       const user = req.body.user; // Simulated user
+      const user_name = req.body.user; // Simulated user
 
+      
       console.log('Booking request received:', selectedDate, selectedTimeSlot, user);
 
 
@@ -53,7 +55,8 @@ async function startServer() {
        const bookingData = {
          user: user,
          date: selectedDate,
-         timeSlot: selectedTimeSlot
+         timeSlot: selectedTimeSlot,
+         name: user_name,
        };
    
        const insertResult = await collection.insertOne(bookingData);
