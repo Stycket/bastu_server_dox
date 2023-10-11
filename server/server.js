@@ -34,7 +34,7 @@ async function startServer() {
       const selectedDate = req.body.date;
       const selectedTimeSlot = req.body.timeSlots;
       const user = req.body.user; // Simulated user
-      const user_name = req.body.user; // Simulated user
+      const user_name = req.body.name; // Simulated user
 
       
       console.log('Booking request received:', selectedDate, selectedTimeSlot, user);
