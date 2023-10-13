@@ -69,9 +69,8 @@ async function startServer() {
 
 
 
-
-// Function to remove items from the previous month
-// Function to remove items that are 3 months old 
+// Function to remove old bookings that is max 3 months old (cuz year change)
+    
 async function removeItemsThreeMonth() {
   try {
     const today = new Date();
@@ -103,6 +102,20 @@ async function removeItemsThreeMonth() {
   }
 }
 
+
+
+// Schedule the task to run at midnight every night removing old bookings
+cron.schedule('0 0 * * *', async () => {
+  try {
+    await removeItemsThreeMonth();
+  } catch (error) {
+    console.error('An error occurred while removing items:', error);
+  }
+});
+
+
+
+    
 
 
 
