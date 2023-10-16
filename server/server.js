@@ -70,91 +70,73 @@ async function startServer() {
 
 
 
-// Function to remove old bookings that is max 3 months old (cuz year change)
-    
+// Remove bookings from yesterday (with cron around midnight)
 async function removeItemsThreeMonth() {
   try {
     const today = new Date();
-    const threeMonthsAgo = new Date(today.getFullYear(), today.getMonth() - 3, today.getDate());
-
-    // Format the date 3 months ago in your custom format
-    const formattedThreeMonthsAgo = `${threeMonthsAgo.getMonth() + 1} / ${threeMonthsAgo.getDate()}`;
-    
-    // Format today's date in your custom format
-    const formattedToday = `${today.getMonth() + 1} / ${today.getDate() - 1}`;
+    const yesterday = new Date();
+    yesterday.setDate(today.getDate() - 1);
 
     const db = client.db(); // Use your existing client and database
     const collection = db.collection('sauna_collection'); // Replace with your collection name
 
-    // Create a filter to find items between yesterday and three months ago
+    // Create a filter to find documents from yesterday
     const filter = {
-      date: {
-        $gte: formattedThreeMonthsAgo, // Greater than or equal to three months ago in your custom format
-        $lte: formattedToday, // Less than or equal to today in your custom format
-      },
+      date: formatDate(yesterday), // Specify the date from yesterday
     };
 
     // Remove documents that match the filter
     const result = await collection.deleteMany(filter);
 
-    console.log(`${result.deletedCount} document(s) removed that are up to 3 months old`);
+    console.log(`${result.deletedCount} document(s) removed from yesterday.`);
   } catch (error) {
-    console.error('An error occurred while removing items:', error);
+    console.error('An error occurred while removing documents:', error);
   }
 }
 
 
 
-// Schedule the task to run at midnight every night removing old bookings
-cron.schedule('0 0 * * *', async () => {
-  try {
-    await removeItemsThreeMonth();
-  } catch (error) {
-    console.error('An error occurred while removing items:', error);
-  }
-});
 
 
-
-    
-
-
-
-
-// Function to check and remove outdated items when the server starts
-async function removeOutdatedItemsOnServerStart() {
+async function removeDocumentsFromYesterday() {
   try {
     const today = new Date();
-    const threeMonthsAgo = new Date(today.getFullYear(), today.getMonth() - 3, today.getDate());
-
-    // Format the date 3 months ago in your custom format
-    const formattedThreeMonthsAgo = `${threeMonthsAgo.getMonth() + 1} / ${threeMonthsAgo.getDate()}`;
-    
-    // Format today's date in your custom format
-    const formattedToday = `${today.getMonth() + 1} / ${today.getDate() - 1}`;
+    const yesterday = new Date();
+    yesterday.setDate(today.getDate() - 1);
 
     const db = client.db(); // Use your existing client and database
     const collection = db.collection('sauna_collection'); // Replace with your collection name
 
-    // Create a filter to find items between yesterday and three months ago
+    // Create a filter to find documents from yesterday
     const filter = {
-      date: {
-        $gte: formattedThreeMonthsAgo, // Greater than or equal to three months ago in your custom format
-        $lte: formattedToday, // Less than or equal to today in your custom format
-      },
+      date: formatDate(yesterday), // Specify the date from yesterday
     };
 
     // Remove documents that match the filter
     const result = await collection.deleteMany(filter);
 
-    console.log(`${result.deletedCount} document(s) removed that are 3 months old or older.`);
+    console.log(`${result.deletedCount} document(s) removed from yesterday.`);
   } catch (error) {
-    console.error('An error occurred while removing items:', error);
+    console.error('An error occurred while removing documents:', error);
   }
 }
 
-// Run the function to remove outdated items when the server starts
-removeOutdatedItemsOnServerStart();
+function formatDate(date) {
+  const month = date.getMonth() + 1; // Adjusting for 0-based index
+  const day = date.getDate();
+  return `${month} / ${day}`;
+}
+
+// To remove documents from yesterday
+removeDocumentsFromYesterday();
+
+
+
+// Schedule the task to run at 00:55 each day
+cron.schedule('50 0 * * *', () => {
+  removeItemsThreeMonth();
+});
+
 
 
 
