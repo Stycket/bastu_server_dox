@@ -133,7 +133,7 @@ removeDocumentsFromYesterday();
 
 
 // Schedule the task to run at 00:55 each day
-cron.schedule('50 0 * * *', () => {
+cron.schedule('53 0 * * *', () => {
   removeItemsThreeMonth();
 });
 
