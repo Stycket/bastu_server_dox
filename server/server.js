@@ -133,14 +133,33 @@ removeDocumentsFromYesterday();
 
 
 // Schedule the task to run at 00:55 each day
-// Schedule the task to run at 01:05 each day in the Swedish timezone
-cron.schedule('2 5 * * *', () => {
-  // Adjust the timezone to Europe/Stockholm (Swedish timezone)
-  const swedishTimezone = 'Europe/Stockholm';
-  const swedishNow = new Date().toLocaleString('en-US', { timeZone: swedishTimezone });
-  removeItemsThreeMonth();
-});
+async function customScheduler() {
+  const targetTime = new Date();
+  targetTime.setHours(20, 30, 0, 0);
 
+  const now = new Date();
+  const timeUntilExecution = targetTime - now;
+
+  if (timeUntilExecution < 0) {
+    // If the target time has already passed for today, schedule it for the next day
+    targetTime.setDate(targetTime.getDate() + 1);
+    timeUntilExecution = targetTime - now;
+  }
+
+  setTimeout(async () => {
+    try {
+      await removeItemsThreeMonth();
+    } catch (error) {
+      console.error('An error occurred while removing items:', error);
+    }
+
+    // Schedule the next execution (e.g., for the next day)
+    customScheduler();
+  }, timeUntilExecution);
+}
+
+// Start the custom scheduler
+customScheduler();
 
 
 // Grab all bookings
