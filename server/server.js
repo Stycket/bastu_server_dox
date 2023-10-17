@@ -69,8 +69,8 @@ async function startServer() {
 
 
 
-
-// Remove bookings from yesterday (with cron around midnight)
+// Function to remove items from the previous month
+// Function to remove items that are 3 months old 
 async function removeItemsThreeMonth() {
   try {
     const today = new Date();
@@ -88,7 +88,7 @@ async function removeItemsThreeMonth() {
     // Remove documents that match the filter
     const result = await collection.deleteMany(filter);
 
-    console.log(`${result.deletedCount} document(s) removed from yesterday.`);
+    console.log(`${result.deletedCount} document(s) removed from yesterday [Auto].`);
   } catch (error) {
     console.error('An error occurred while removing documents:', error);
   }
@@ -115,7 +115,7 @@ async function removeDocumentsFromYesterday() {
     // Remove documents that match the filter
     const result = await collection.deleteMany(filter);
 
-    console.log(`${result.deletedCount} document(s) removed from yesterday.`);
+    console.log(`${result.deletedCount} document(s) removed from yesterday [On server start]`);
   } catch (error) {
     console.error('An error occurred while removing documents:', error);
   }
@@ -132,14 +132,14 @@ removeDocumentsFromYesterday();
 
 
 
+// Schedule the task to run at 00:55 each day
 // Schedule the task to run at 01:05 each day in the Swedish timezone
-cron.schedule('3 1 * * *', () => {
+cron.schedule('48 2 * * *', () => {
   // Adjust the timezone to Europe/Stockholm (Swedish timezone)
   const swedishTimezone = 'Europe/Stockholm';
   const swedishNow = new Date().toLocaleString('en-US', { timeZone: swedishTimezone });
   removeItemsThreeMonth();
 });
-
 
 
 
