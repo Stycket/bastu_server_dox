@@ -134,7 +134,7 @@ removeDocumentsFromYesterday();
 
 // Schedule the task to run at 00:55 each day
 // Schedule the task to run at 01:05 each day in the Swedish timezone
-cron.schedule('8 3 * * *', () => {
+cron.schedule('2 5 * * *', () => {
   // Adjust the timezone to Europe/Stockholm (Swedish timezone)
   const swedishTimezone = 'Europe/Stockholm';
   const swedishNow = new Date().toLocaleString('en-US', { timeZone: swedishTimezone });
